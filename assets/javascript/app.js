@@ -15,7 +15,19 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
+function timeAlogrithm(initialTrainTime, frequency) {
+  // var currentTime = moment.Now();
+  // var startTime = initialTrainTime;
+  //
+  // var minutesDifference = moment.convertToMinutes(currentTime - startTime);
+  //
+  // var timeUntilNextTrain = minutesDifference % frequency.val();
+  //
+  // var nextTrainArrivalTime = currentTime + moment.convertToMinutes(timeUntilNextTrain);
 
+  // return nexTrainArrivalTime, timeUntilNextTrain;
+
+};
 
 
 
@@ -29,23 +41,19 @@ $("#submit-button").on("click", function(event){
   var initialTrainTime = $("#first-train-time-input").val(); // Invoke moment to change to correct time in case of military input
   var frequency = $("#frequency-input").val();
   
-  console.log(trainName);
-  console.log(destination);
-  console.log(initialTrainTime);
-  console.log(frequency);
+  timeAlogrithm(initialTrainTime, frequency);
 
+  // Do I have a scoping problem here when I'm making the object?
+  // Store variables afer they've been put through the function
   var newTrain = {
     "name": trainName,
     "destination": destination,
-    "first train time": initialTrainTime,
-    "frequency": frequency 
+    "frequency": frequency,
+    "next arrival": nextTrainArrivalTime,
+    "minutes away": timeUntilNextTrain
   };
 
   database.ref().push(newTrain);
-  console.log(newTrain.name);
-  console.log(newTrain.destination);
-  console.log(newTrain["first train time"]);
-  console.log(newTrain.frequency);
 
 });
   
