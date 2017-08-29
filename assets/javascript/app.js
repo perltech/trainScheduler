@@ -26,7 +26,7 @@ $("#submit-button").on("click", function(event){
   // Store user input into variables
   var trainName = $("#train-name-input").val();
   var destination = $("#destination-input").val();
-  var initialTrainTime = $("#first-train-time-input").val();
+  var initialTrainTime = $("#first-train-time-input").val(); // Invoke moment to change to correct time in case of military input
   var frequency = $("#frequency-input").val();
   
   console.log(trainName);
@@ -34,7 +34,20 @@ $("#submit-button").on("click", function(event){
   console.log(initialTrainTime);
   console.log(frequency);
 
-})
+  var newTrain = {
+    "name": trainName,
+    "destination": destination,
+    "first train time": initialTrainTime,
+    "frequency": frequency 
+  };
+
+  database.ref().push(newTrain);
+  console.log(newTrain.name);
+  console.log(newTrain.destination);
+  console.log(newTrain["first train time"]);
+  console.log(newTrain.frequency);
+
+});
   
 
 }); // End of ready function
