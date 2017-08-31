@@ -17,6 +17,7 @@ var database = firebase.database();
 
 function timeAlogrithm(initialTrainTime, frequency) {
   // var currentTime = moment.Now();
+
   // var startTime = initialTrainTime;
   //
   // var minutesDifference = moment.convertToMinutes(currentTime - startTime);
@@ -38,7 +39,8 @@ $("#submit-button").on("click", function(event){
   // Store user input into variables
   var trainName = $("#train-name-input").val();
   var destination = $("#destination-input").val();
-  var initialTrainTime = $("#first-train-time-input").val(); // Invoke moment to change to correct time in case of military input
+  var initialTrainTime = moment($("#first-train-time-input").val(), "hh:mm a, HH:mm").format("hh:mm a");
+  console.log(initialTrainTime);
   var frequency = $("#frequency-input").val();
   
   // timeAlogrithm(initialTrainTime, frequency);
@@ -75,9 +77,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   // var nexTrainArrivalTime = sv["next arrival"];
   // var timeUntilNextTrain = sv["minutes away"];
 
-  console.log(trainName);
-  console.log(destination);
-  console.log(frequency);
+
 
 })
   
