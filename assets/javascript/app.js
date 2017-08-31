@@ -17,17 +17,17 @@ var database = firebase.database();
 // Determine time until the next train and the arrival time
 function timeAlogrithm(initialTrainTime, frequency) {
   // var currentTime = moment.Now();
-
+  var currentTime = moment();
   // var startTime = initialTrainTime;
-  //
+  var startTime = initialTrainTime;
   // var minutesDifference = moment.convertToMinutes(currentTime - startTime);
-  //
+  var minutesDifference = moment().subtract(currentTime - startTime);
   // var timeUntilNextTrain = minutesDifference % frequency.val();
-  //
+  var timeUntilNextTrain = minutesDifference % frequency;
   // var nextTrainArrivalTime = currentTime + moment.convertToMinutes(timeUntilNextTrain);
-
+  var nextTrainArrivalTime = moment().add(currentTime + timeUntilNextTrain);
   // return nexTrainArrivalTime, timeUntilNextTrain;
-
+  return nextTrainArrivalTime, timeUntilNextTrain
 };
 
 // Display values from schedule
@@ -49,10 +49,10 @@ $("#submit-button").on("click", function(event){
   var trainName = $("#train-name-input").val();
   var destination = $("#destination-input").val();
   var initialTrainTime = moment($("#first-train-time-input").val(), "hh:mm a, HH:mm").format("hh:mm a");
-  console.log(initialTrainTime);
   var frequency = $("#frequency-input").val();
   
-  // timeAlogrithm(initialTrainTime, frequency);
+  timeAlogrithm(initialTrainTime, frequency);
+  console.log(nextTrainArrivalTime, timeUntilNextTrain);
 
   // Do I have a scoping problem here when I'm making the object?
   // Store variables afer they've been put through the function
@@ -66,7 +66,6 @@ $("#submit-button").on("click", function(event){
 
   // Store new local object into firebase
   database.ref().push(newTrain);
-  console.log(newTrain);
 
   // Clear out the inputs
   $("#train-name-input").val("");
