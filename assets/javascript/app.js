@@ -41,7 +41,7 @@ $("#submit-button").on("click", function(event){
   var initialTrainTime = $("#first-train-time-input").val(); // Invoke moment to change to correct time in case of military input
   var frequency = $("#frequency-input").val();
   
-  timeAlogrithm(initialTrainTime, frequency);
+  // timeAlogrithm(initialTrainTime, frequency);
 
   // Do I have a scoping problem here when I'm making the object?
   // Store variables afer they've been put through the function
@@ -49,11 +49,21 @@ $("#submit-button").on("click", function(event){
     "name": trainName,
     "destination": destination,
     "frequency": frequency,
-    "next arrival": nextTrainArrivalTime,
-    "minutes away": timeUntilNextTrain
+    // "next arrival": nextTrainArrivalTime,
+    // "minutes away": timeUntilNextTrain
   };
-
+  // Store new local object into firebase
   database.ref().push(newTrain);
+
+
+  // Clear out the inputs
+  $("#train-name-input").val("");
+  $("#destination-input").val("");
+  $("#first-train-time-input").val("")
+  $("#frequency-input").val("");
+  
+  
+
 
 });
   
