@@ -27,7 +27,7 @@ function timeAlogrithm(initialTrainTime, frequency) {
   // var nextTrainArrivalTime = currentTime + moment.convertToMinutes(timeUntilNextTrain);
   var nextTrainArrivalTime = moment().add(currentTime + timeUntilNextTrain);
   // return nexTrainArrivalTime, timeUntilNextTrain;
-  return nextTrainArrivalTime, timeUntilNextTrain
+  return [nextTrainArrivalTime, timeUntilNextTrain];
 };
 
 // Display values from schedule
@@ -51,7 +51,9 @@ $("#submit-button").on("click", function(event){
   var initialTrainTime = moment($("#first-train-time-input").val(), "hh:mm a, HH:mm").format("hh:mm a");
   var frequency = $("#frequency-input").val();
   
-  timeAlogrithm(initialTrainTime, frequency);
+  var times = timeAlogrithm(initialTrainTime, frequency);
+  var nextTrainArrivalTime = times[0];
+  var timeUntilNextTrain = times[1];
   console.log(nextTrainArrivalTime, timeUntilNextTrain);
 
   // Do I have a scoping problem here when I'm making the object?
