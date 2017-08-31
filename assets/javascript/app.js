@@ -14,7 +14,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-
+// Determine time until the next train and the arrival time
 function timeAlogrithm(initialTrainTime, frequency) {
   // var currentTime = moment.Now();
 
@@ -30,15 +30,15 @@ function timeAlogrithm(initialTrainTime, frequency) {
 
 };
 
+// Display values from schedule
 function appendNewValues(sv) {
-  var tr = $("tr");
+  var tr = $("<tr>");
   tr.append("<td>" + sv.name);
   tr.append("<td>" + sv.destination);
-  // tr.append(sv.frequency + "<td>");
+  tr.append("<td>" + sv.frequency);
   // tr.append(sv["next arrival"] + "<td>")
   // tr.append(sv["minutes away"] + "<td>") 
   $("table > tbody").append(tr);
-  // return tr;
 };
 
 // Button to add new schedule
@@ -63,6 +63,7 @@ $("#submit-button").on("click", function(event){
     // "next arrival": nextTrainArrivalTime,
     // "minutes away": timeUntilNextTrain
   };
+
   // Store new local object into firebase
   database.ref().push(newTrain);
   console.log(newTrain);
@@ -86,16 +87,10 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   // var nexTrainArrivalTime = sv["next arrival"];
   // var timeUntilNextTrain = sv["minutes away"];
 
-  appendNewValues(sv);
-
   // Dynamically create table rows containing newly entered user values and display to table body
-  // $("#train-table", "tbody").append(appendNewValues(sv));
+  appendNewValues(sv);
 
 })
   
 
-
-
 }); // End of ready function
-
-
