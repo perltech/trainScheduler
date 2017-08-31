@@ -36,8 +36,8 @@ function appendNewValues(sv) {
   tr.append("<td>" + sv.name);
   tr.append("<td>" + sv.destination);
   tr.append("<td>" + sv.frequency);
-  //tr.append("<td>" + sv["next arrival"])
-  tr.append("<td>" + sv["minutes away"]) 
+  tr.append("<td>" + sv["next arrival"]);
+  tr.append("<td>" + sv["minutes away"]);
   $("table > tbody").append(tr);
 };
 
@@ -54,6 +54,7 @@ $("#submit-button").on("click", function(event){
   var times = timeAlogrithm(initialTrainTime, frequency);
   //var nextTrainArrivalTime = times[0];
   var timeUntilNextTrain = times[1];
+  //console.log(nextTrainArrivalTime);
   console.log(timeUntilNextTrain);
 
   // Do I have a scoping problem here when I'm making the object?
@@ -72,7 +73,7 @@ $("#submit-button").on("click", function(event){
   // Clear out the inputs
   $("#train-name-input").val("");
   $("#destination-input").val("");
-  $("#first-train-time-input").val("")
+  $("#first-train-time-input").val("");
   $("#frequency-input").val("");
 });
 
