@@ -36,8 +36,8 @@ function appendNewValues(sv) {
   tr.append("<td>" + sv.name);
   tr.append("<td>" + sv.destination);
   tr.append("<td>" + sv.frequency);
-  // tr.append(sv["next arrival"] + "<td>")
-  // tr.append(sv["minutes away"] + "<td>") 
+  //tr.append("<td>" + sv["next arrival"])
+  tr.append("<td>" + sv["minutes away"]) 
   $("table > tbody").append(tr);
 };
 
@@ -52,9 +52,9 @@ $("#submit-button").on("click", function(event){
   var frequency = $("#frequency-input").val();
   
   var times = timeAlogrithm(initialTrainTime, frequency);
-  var nextTrainArrivalTime = times[0];
+  //var nextTrainArrivalTime = times[0];
   var timeUntilNextTrain = times[1];
-  console.log(nextTrainArrivalTime, timeUntilNextTrain);
+  console.log(timeUntilNextTrain);
 
   // Do I have a scoping problem here when I'm making the object?
   // Store variables afer they've been put through the function
@@ -62,8 +62,8 @@ $("#submit-button").on("click", function(event){
     "name": trainName,
     "destination": destination,
     "frequency": frequency,
-    // "next arrival": nextTrainArrivalTime,
-    // "minutes away": timeUntilNextTrain
+    //"next arrival": nextTrainArrivalTime,
+    "minutes away": timeUntilNextTrain
   };
 
   // Store new local object into firebase
@@ -85,8 +85,8 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   var trainName = sv.name;
   var destination = sv.destination;
   var frequency = sv.frequency;
-  // var nexTrainArrivalTime = sv["next arrival"];
-  // var timeUntilNextTrain = sv["minutes away"];
+  var nextTrainArrivalTime = sv["next arrival"];
+  var timeUntilNextTrain = sv["minutes away"];
 
   // Dynamically create table rows containing newly entered user values and display to table body
   appendNewValues(sv);
