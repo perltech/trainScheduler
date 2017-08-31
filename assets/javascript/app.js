@@ -21,11 +21,11 @@ function timeAlogrithm(initialTrainTime, frequency) {
   // var startTime = initialTrainTime;
   var startTime = initialTrainTime;
   // var minutesDifference = moment.convertToMinutes(currentTime - startTime);
-  var minutesDifference = moment().subtract(currentTime - startTime);
+  var minutesDifference = moment().subtract(currentTime, startTime);
   // var timeUntilNextTrain = minutesDifference % frequency.val();
   var timeUntilNextTrain = minutesDifference % frequency;
   // var nextTrainArrivalTime = currentTime + moment.convertToMinutes(timeUntilNextTrain);
-  var nextTrainArrivalTime = moment().add(currentTime + timeUntilNextTrain);
+  var nextTrainArrivalTime = moment().add(currentTime, timeUntilNextTrain);
   // return nexTrainArrivalTime, timeUntilNextTrain;
   return [nextTrainArrivalTime, timeUntilNextTrain];
 };
