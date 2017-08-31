@@ -30,7 +30,16 @@ function timeAlogrithm(initialTrainTime, frequency) {
 
 };
 
-
+function appendNewValues(sv) {
+  var tr = $("tr");
+  tr.append("<td>" + sv.name);
+  tr.append("<td>" + sv.destination);
+  // tr.append(sv.frequency + "<td>");
+  // tr.append(sv["next arrival"] + "<td>")
+  // tr.append(sv["minutes away"] + "<td>") 
+  $("table > tbody").append(tr);
+  // return tr;
+};
 
 // Button to add new schedule
 $("#submit-button").on("click", function(event){
@@ -77,7 +86,10 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   // var nexTrainArrivalTime = sv["next arrival"];
   // var timeUntilNextTrain = sv["minutes away"];
 
+  appendNewValues(sv);
 
+  // Dynamically create table rows containing newly entered user values and display to table body
+  // $("#train-table", "tbody").append(appendNewValues(sv));
 
 })
   
