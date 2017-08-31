@@ -54,19 +54,35 @@ $("#submit-button").on("click", function(event){
   };
   // Store new local object into firebase
   database.ref().push(newTrain);
-
+  console.log(newTrain);
 
   // Clear out the inputs
   $("#train-name-input").val("");
   $("#destination-input").val("");
   $("#first-train-time-input").val("")
   $("#frequency-input").val("");
-  
-  
-
-
 });
+
+// Create firebase event for adding train schedule to database and display new entries
+database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+  console.log(childSnapshot.val());
+
+  var sv = childSnapshot.val();
+
+  var trainName = sv.name;
+  var destination = sv.destination;
+  var frequency = sv.frequency;
+  // var nexTrainArrivalTime = sv["next arrival"];
+  // var timeUntilNextTrain = sv["minutes away"];
+
+  console.log(trainName);
+  console.log(destination);
+  console.log(frequency);
+
+})
   
+
+
 
 }); // End of ready function
 
